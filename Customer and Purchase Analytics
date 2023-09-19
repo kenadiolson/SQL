@@ -1,13 +1,13 @@
 # 1. How many purchases has each age group made?
 SELECT SUM(NumWebPurchases)+SUM(NumCatalogPurchases)+SUM(NumStorePurchases) AS total_purchases,
-       CASE WHEN Year_Birth >= 1922 AND Year_Birth <= 1927 THEN '96-101'
-       WHEN Year_Birth >= 1928 AND Year_Birth <= 1945 THEN '78-95'
-       WHEN Year_Birth >= 1946 AND Year_Birth <= 1954 THEN '69-77'
-       WHEN Year_Birth >= 1955 AND Year_Birth <= 1964 THEN '59-68'
-       WHEN Year_Birth >= 1965 AND Year_Birth <= 1980 THEN '43-58'
-       WHEN Year_Birth >= 1981 AND Year_Birth <= 1996 THEN '27-42'
-       WHEN Year_Birth >= 1997 AND Year_Birth <= 2012 THEN '11-26'
-       END AS age_group
+CASE WHEN Year_Birth >= 1922 AND Year_Birth <= 1927 THEN '96-101'
+WHEN Year_Birth >= 1928 AND Year_Birth <= 1945 THEN '78-95'
+WHEN Year_Birth >= 1946 AND Year_Birth <= 1954 THEN '69-77'
+WHEN Year_Birth >= 1955 AND Year_Birth <= 1964 THEN '59-68'
+WHEN Year_Birth >= 1965 AND Year_Birth <= 1980 THEN '43-58'
+WHEN Year_Birth >= 1981 AND Year_Birth <= 1996 THEN '27-42'
+WHEN Year_Birth >= 1997 AND Year_Birth <= 2012 THEN '11-26'
+END AS age_group
 FROM iFood.customer_info
 GROUP BY age_group
 ORDER BY total_purchases DESC
@@ -15,14 +15,14 @@ ORDER BY total_purchases DESC
 
 # 2. How many of those were catalog purchases?
 SELECT SUM(NumCatalogPurchases) AS total_catalog_purchases,
-       CASE WHEN Year_Birth >= 1922 AND Year_Birth <= 1927 THEN '96-101'
-       WHEN Year_Birth >= 1928 AND Year_Birth <= 1945 THEN '78-95'
-       WHEN Year_Birth >= 1946 AND Year_Birth <= 1954 THEN '69-77'
-       WHEN Year_Birth >= 1955 AND Year_Birth <= 1964 THEN '59-68'
-       WHEN Year_Birth >= 1965 AND Year_Birth <= 1980 THEN '43-58'
-       WHEN Year_Birth >= 1981 AND Year_Birth <= 1996 THEN '27-42'
-       WHEN Year_Birth >= 1997 AND Year_Birth <= 2012 THEN '11-26'
-       END AS age_group
+CASE WHEN Year_Birth >= 1922 AND Year_Birth <= 1927 THEN '96-101'
+WHEN Year_Birth >= 1928 AND Year_Birth <= 1945 THEN '78-95'
+WHEN Year_Birth >= 1946 AND Year_Birth <= 1954 THEN '69-77'
+WHEN Year_Birth >= 1955 AND Year_Birth <= 1964 THEN '59-68'
+WHEN Year_Birth >= 1965 AND Year_Birth <= 1980 THEN '43-58'
+WHEN Year_Birth >= 1981 AND Year_Birth <= 1996 THEN '27-42'
+WHEN Year_Birth >= 1997 AND Year_Birth <= 2012 THEN '11-26'
+END AS age_group
 FROM iFood.customer_info
 GROUP BY age_group
 ORDER BY total_catalog_purchases DESC
@@ -30,10 +30,10 @@ ORDER BY total_catalog_purchases DESC
 
 # 3. How many of those were store purchases?
 SELECT SUM(NumStorePurchases) AS total_store_purchases,
-       CASE WHEN Year_Birth >= 1922 AND Year_Birth <= 1927 THEN '96-101'
-       WHEN Year_Birth >= 1928 AND Year_Birth <= 1945 THEN '78-95'
-       WHEN Year_Birth >= 1946 AND Year_Birth <= 1954 THEN '69-77'
-       WHEN Year_Birth >= 1955 AND Year_Birth <= 1964 THEN '59-68'
+CASE WHEN Year_Birth >= 1922 AND Year_Birth <= 1927 THEN '96-101'
+WHEN Year_Birth >= 1928 AND Year_Birth <= 1945 THEN '78-95'
+WHEN Year_Birth >= 1946 AND Year_Birth <= 1954 THEN '69-77'
+WHEN Year_Birth >= 1955 AND Year_Birth <= 1964 THEN '59-68'
        WHEN Year_Birth >= 1965 AND Year_Birth <= 1980 THEN '43-58'
        WHEN Year_Birth >= 1981 AND Year_Birth <= 1996 THEN '27-42'
        WHEN Year_Birth >= 1997 AND Year_Birth <= 2012 THEN '11-26'
