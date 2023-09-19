@@ -1,0 +1,110 @@
+# 1. How many purchases has each age group made?
+SELECT SUM(NumWebPurchases)+SUM(NumCatalogPurchases)+SUM(NumStorePurchases) AS total_purchases,
+       CASE WHEN Year_Birth >= 1922 AND Year_Birth <= 1927 THEN '96-101'
+       WHEN Year_Birth >= 1928 AND Year_Birth <= 1945 THEN '78-95'
+       WHEN Year_Birth >= 1946 AND Year_Birth <= 1954 THEN '69-77'
+       WHEN Year_Birth >= 1955 AND Year_Birth <= 1964 THEN '59-68'
+       WHEN Year_Birth >= 1965 AND Year_Birth <= 1980 THEN '43-58'
+       WHEN Year_Birth >= 1981 AND Year_Birth <= 1996 THEN '27-42'
+       WHEN Year_Birth >= 1997 AND Year_Birth <= 2012 THEN '11-26'
+       END AS age_group
+FROM iFood.customer_info
+GROUP BY age_group
+ORDER BY total_purchases DESC
+
+
+# 2. How many of those were catalog purchases?
+SELECT SUM(NumCatalogPurchases) AS total_catalog_purchases,
+       CASE WHEN Year_Birth >= 1922 AND Year_Birth <= 1927 THEN '96-101'
+       WHEN Year_Birth >= 1928 AND Year_Birth <= 1945 THEN '78-95'
+       WHEN Year_Birth >= 1946 AND Year_Birth <= 1954 THEN '69-77'
+       WHEN Year_Birth >= 1955 AND Year_Birth <= 1964 THEN '59-68'
+       WHEN Year_Birth >= 1965 AND Year_Birth <= 1980 THEN '43-58'
+       WHEN Year_Birth >= 1981 AND Year_Birth <= 1996 THEN '27-42'
+       WHEN Year_Birth >= 1997 AND Year_Birth <= 2012 THEN '11-26'
+       END AS age_group
+FROM iFood.customer_info
+GROUP BY age_group
+ORDER BY total_catalog_purchases DESC
+
+
+# 3. How many of those were store purchases?
+SELECT SUM(NumStorePurchases) AS total_store_purchases,
+       CASE WHEN Year_Birth >= 1922 AND Year_Birth <= 1927 THEN '96-101'
+       WHEN Year_Birth >= 1928 AND Year_Birth <= 1945 THEN '78-95'
+       WHEN Year_Birth >= 1946 AND Year_Birth <= 1954 THEN '69-77'
+       WHEN Year_Birth >= 1955 AND Year_Birth <= 1964 THEN '59-68'
+       WHEN Year_Birth >= 1965 AND Year_Birth <= 1980 THEN '43-58'
+       WHEN Year_Birth >= 1981 AND Year_Birth <= 1996 THEN '27-42'
+       WHEN Year_Birth >= 1997 AND Year_Birth <= 2012 THEN '11-26'
+       END AS age_group
+FROM iFood.customer_info
+GROUP BY age_group
+ORDER BY total_store_purchases DESC
+
+
+# 4. How many of those were web purchases?
+SELECT SUM(NumWebPurchases) AS total_web_purchases,
+       CASE WHEN Year_Birth >= 1922 AND Year_Birth <= 1927 THEN '96-101'
+       WHEN Year_Birth >= 1928 AND Year_Birth <= 1945 THEN '78-95'
+       WHEN Year_Birth >= 1946 AND Year_Birth <= 1954 THEN '69-77'
+       WHEN Year_Birth >= 1955 AND Year_Birth <= 1964 THEN '59-68'
+       WHEN Year_Birth >= 1965 AND Year_Birth <= 1980 THEN '43-58'
+       WHEN Year_Birth >= 1981 AND Year_Birth <= 1996 THEN '27-42'
+       WHEN Year_Birth >= 1997 AND Year_Birth <= 2012 THEN '11-26'
+       END AS age_group
+FROM iFood.customer_info
+GROUP BY age_group
+ORDER BY total_web_purchases DESC
+
+
+# 5. What was the average amount spent by customers?
+SELECT (SUM(MntFishProducts)+SUM(MntFruits)+SUM(MntMeatProducts)+SUM(MntSweetProducts)+SUM(MntWines))/COUNT(ID) AS avg_amount_spent
+FROM iFood.customer_info
+
+
+# 6. Which age group spent the most on wine?
+SELECT SUM(MntWines) AS amount_spent_on_wine,
+       CASE WHEN Year_Birth >= 1922 AND Year_Birth <= 1927 THEN '96-101'
+       WHEN Year_Birth >= 1928 AND Year_Birth <= 1945 THEN '78-95'
+       WHEN Year_Birth >= 1946 AND Year_Birth <= 1954 THEN '69-77'
+       WHEN Year_Birth >= 1955 AND Year_Birth <= 1964 THEN '59-68'
+       WHEN Year_Birth >= 1965 AND Year_Birth <= 1980 THEN '43-58'
+       WHEN Year_Birth >= 1981 AND Year_Birth <= 1996 THEN '27-42'
+       WHEN Year_Birth >= 1997 AND Year_Birth <= 2012 THEN '11-26'
+       END AS age_group
+FROM iFood.customer_info
+GROUP BY age_group
+ORDER BY amount_spent_on_wine DESC
+LIMIT 1
+
+
+# 7. Which age group spent the most on fish products?
+SELECT SUM(MntFishProducts) AS amount_spent_on_fish,
+       CASE WHEN Year_Birth >= 1922 AND Year_Birth <= 1927 THEN '96-101'
+       WHEN Year_Birth >= 1928 AND Year_Birth <= 1945 THEN '78-95'
+       WHEN Year_Birth >= 1946 AND Year_Birth <= 1954 THEN '69-77'
+       WHEN Year_Birth >= 1955 AND Year_Birth <= 1964 THEN '59-68'
+       WHEN Year_Birth >= 1965 AND Year_Birth <= 1980 THEN '43-58'
+       WHEN Year_Birth >= 1981 AND Year_Birth <= 1996 THEN '27-42'
+       WHEN Year_Birth >= 1997 AND Year_Birth <= 2012 THEN '11-26'
+       END AS age_group
+FROM iFood.customer_info
+GROUP BY age_group
+ORDER BY amount_spent_on_fish DESC
+LIMIT 1
+
+
+# 8. What percentage of customers have children at home?
+SELECT (SUM(IF(Kidhome + Teenhome > 0, 1, 0))/COUNT(ID))*100 AS percent_with_children
+FROM iFood.customer_info
+
+
+# 9. How many customers have been enrolled with the company for longer than 10 years?
+SELECT SUM(IF(DATE_DIFF(CURRENT_DATE(), Dt_Customer, YEAR) > 10, 1, 0))
+FROM iFood.customer_info
+
+
+# 10. What is the average number of days since a customer's last purchase?
+SELECT ROUND(Avg(Recency))
+FROM iFood.customer_info
