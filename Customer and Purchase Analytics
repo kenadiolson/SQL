@@ -1,5 +1,3 @@
-<!doctype html>
-
 # 1. How many purchases has each age group made?
 SELECT SUM(NumWebPurchases)+SUM(NumCatalogPurchases)+SUM(NumStorePurchases) AS total_purchases,
 CASE WHEN Year_Birth >= 1922 AND Year_Birth <= 1927 THEN '96-101'
